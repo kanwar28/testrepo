@@ -4,7 +4,7 @@ from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 connection_string =\
-    urllib.parse.quote_plus('Driver={ODBC Driver 17 for SQL Server};Server=localhost\MSSQLSERVER01;Database=XFS_Data;Trusted_Connection=yes;')
+    urllib.parse.quote_plus('Driver={ODBC Driver 17 for SQL Server};Server=localhost\MSSQLSERVER01;Database=db_Data;Trusted_Connection=yes;')
 connection_string = "mssql+pyodbc:///?odbc_connect=%s" % connection_string
 app.config['SQLALCHEMY_DATABASE_URI'] = connection_string
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -18,7 +18,7 @@ session1 = db.session
 def testdb():
     try:
         session1.begin()
-        session1.execute("update [OCRDocument] set UserName = 'Ksing' where ScanSubscriptionID = 1600336614")
+        session1.execute("update [table] set UserName = 'Ksing' where ScanSubscriptionID = 1600336614")
         session1.commit()
         return '<h1>It works.</h1>'
     except Exception as e:
